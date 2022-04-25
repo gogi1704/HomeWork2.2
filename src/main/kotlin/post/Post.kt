@@ -6,7 +6,7 @@ import post.postContent.View
 
 
 data class Post(
-    var id: Int = -1,
+    var id: Int = 0,
     val ownerId: Int,
     val fromId: Int,
     val createdBy: Int,
@@ -15,23 +15,8 @@ data class Post(
     val replyOwnerId: Int,
     val replyPostId: Int,
     val friends_only: Boolean = false,
-//    val comments: Comment,  //
-//    val copyright: Copyright,  //
-    val likes: Like,  //
-    val reposts: Repost,  //
-    val views: View,  //
-//    val postType: String,
-//    val signerId: Int,
-//    val canPin: Boolean = true,
-//    val canDelete: Boolean = true,
-//    val canEdit: Boolean = false,
-//    val isPinned: Boolean,
-//    val markedAsAds: Boolean,
-//    val isFavorite: Boolean,
-//    val donut: Donut,   // 
+    val likes: Like,
+    val reposts: Repost,
+    val views: View,
     val postponedId: Int
-
-) {
-
-
-}
+)
