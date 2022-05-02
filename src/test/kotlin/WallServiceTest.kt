@@ -1,7 +1,7 @@
 import org.junit.Assert.*
 import org.junit.Test
 import post.Post
-import post.postContent.Attachments
+import post.postContent.attachments.Attachments
 import post.postContent.Like
 import post.postContent.Repost
 import post.postContent.View

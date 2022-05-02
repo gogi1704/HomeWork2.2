@@ -1,6 +1,7 @@
 package post
 
 import post.postContent.*
+import post.postContent.attachments.Attachments
 
 
 data class Post(
