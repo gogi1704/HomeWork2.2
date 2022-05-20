@@ -1,8 +1,7 @@
 package post
 
-import post.postContent.Like
-import post.postContent.Repost
-import post.postContent.View
+import post.postContent.*
+import post.postContent.attachments.Attachments
 
 
 data class Post(
@@ -16,7 +15,10 @@ data class Post(
     val replyPostId: Int,
     val friends_only: Boolean = false,
     val likes: Like,
-    val reposts: Repost,
+    val reposts: Repost?,
     val views: View,
-    val postponedId: Int
+    val postponedId: Int,
+    val copyHistory:Array<Post>?,
+    val geo: Geo?,
+    val attachments:Array<Attachments>
 )

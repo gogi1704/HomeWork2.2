@@ -26,7 +26,11 @@ object WallService {
                 likes = post.likes,
                 reposts = post.reposts,
                 views = post.views,
-                postponedId = post.postponedId
+                postponedId = post.postponedId,
+                geo = post.geo,
+                copyHistory = post.copyHistory,
+                attachments = post.attachments
+
             )
             return true
         }
