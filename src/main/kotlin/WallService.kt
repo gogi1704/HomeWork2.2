@@ -1,11 +1,14 @@
 import Exceptions.PostNotFoundException
 import post.Post
 import post.postContent.Comment
+import post.postContent.ReportComment
 
 object WallService {
     private var postList = emptyArray<Post>()
     private var commentsList = emptyArray<Comment>()
+    private var reportComments = emptyArray<ReportComment>()
     private var uniqueId = 0
+    private val rangeReasonReport:IntRange = 0..8
 
     fun addPost(post: Post): Post {
         post.id = uniqueId
@@ -41,12 +44,25 @@ object WallService {
     }
 
     fun createComment(comment: Comment) {
-       for (post in postList){
-           if (post.id == comment.postId){
-               commentsList + comment
-           }else throw PostNotFoundException("Пост с таким id : ${comment.postId} , не существует")
-
-       }
+        for (post in postList) {
+            if (post.id == comment.postId) {
+                commentsList + comment
+            } else throw PostNotFoundException("Пост с таким id : ${comment.postId} , не существует")
+        }
 
     }
+
+    fun createReportComment(reportComment: ReportComment) {
+        for (post in postList) {
+            if (reportComment.commentId !in rangeReasonReport){
+                throw ReportReasonException("Неизвестная причина жалобы")
+            }
+            if (post.id == reportComment.commentId) {
+                reportComments + reportComment
+            } else throw PostNotFoundException("Пост с таким id : ${reportComment.commentId} , не существует")
+        }
+
+    }
+
+
 }

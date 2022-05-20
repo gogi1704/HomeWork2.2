@@ -2,10 +2,7 @@ import Exceptions.PostNotFoundException
 import org.junit.Assert.*
 import org.junit.Test
 import post.Post
-import post.postContent.Comment
-import post.postContent.Like
-import post.postContent.Repost
-import post.postContent.View
+import post.postContent.*
 import post.postContent.attachments.Attachments
 
 class WallServiceTest {
@@ -93,9 +90,14 @@ class WallServiceTest {
     }
 
     @Test(expected = PostNotFoundException::class)
-    fun shouldThrow() {
+    fun shouldThrowPostNotFound() {
         val comment = Comment(22, 1, 1, 1)
         service.createComment(comment)
 
+    }
+
+    @Test(expected = ReportReasonException::class)
+    fun shouldThrowReportReason(){
+        service.createReportComment(ReportComment(0,22,0))
     }
 }
