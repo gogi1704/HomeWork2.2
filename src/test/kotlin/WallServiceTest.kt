@@ -9,7 +9,6 @@ class WallServiceTest {
 
     private val service = WallService
     val arrAttachments = emptyArray<Attachments>()
-
     @Test
     fun addPost() {
         val post = Post(
@@ -89,15 +88,23 @@ class WallServiceTest {
         assertFalse(result)
     }
 
+    @Test
+    fun createComment() {
+        val comment = Comment(0, 1, 1, 1)
+        val comment2 = Comment(2, 1, 1, 1)
+        val result = service.createComment(comment)
+        val result2 = service.createComment(comment2)
+        assertEquals(result , result2)
+    }
+
     @Test(expected = PostNotFoundException::class)
     fun shouldThrowPostNotFound() {
         val comment = Comment(22, 1, 1, 1)
         service.createComment(comment)
-
     }
 
     @Test(expected = ReportReasonException::class)
-    fun shouldThrowReportReason(){
-        service.createReportComment(ReportComment(0,22,0))
+    fun shouldThrowReportReason() {
+        service.createReportComment(ReportComment(0, 0, 10))
     }
 }
