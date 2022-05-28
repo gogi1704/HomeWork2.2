@@ -1,4 +1,4 @@
-import Exceptions.PostNotFoundException
+import MyExceptions.PostNotFoundException
 import post.Post
 import post.postContent.Comment
 import post.postContent.ReportComment
