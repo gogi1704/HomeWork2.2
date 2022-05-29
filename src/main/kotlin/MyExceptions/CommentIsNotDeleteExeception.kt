@@ -1,2 +1,3 @@
 package MyExceptions
-class CommentIsNotDeleteException(private val text:String):Exception(text){}
+
+class CommentIsNotDeleteException(private val text:String):Exception(text)

@@ -79,7 +79,7 @@ object NoteService {
     fun restoreComment(noteId: Int, commentId: Int): Boolean {
         val comment = mapOfComments[commentId]
         if (mapOfNotes[noteId]?.comments?.contains(comment) == false) {
-            mapOfNotes[noteId]?.addComment(comment as Comment)
+            mapOfNotes[noteId]?.comments!![commentId] = mapOfNotes[noteId]?.comments!![commentId].copy(id = commentId)
             return true
         } else throw CommentIsNotDeleteException("Нет доступа к комментарию")
     }
