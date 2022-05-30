@@ -1,4 +1,4 @@
-import Exceptions.PostNotFoundException
+import MyExceptions.PostNotFoundException
 import org.junit.Assert.*
 import org.junit.Test
 import post.Post
@@ -90,8 +90,8 @@ class WallServiceTest {
 
     @Test
     fun createComment() {
-        val comment = Comment(0, 1, 1, 1)
-        val comment2 = Comment(2, 1, 1, 1)
+        val comment = Comment(0, 1, "",1, 1)
+        val comment2 = Comment(2, 1, "",1, 1)
         val result = service.createComment(comment)
         val result2 = service.createComment(comment2)
         assertEquals(result , result2)
@@ -99,7 +99,7 @@ class WallServiceTest {
 
     @Test(expected = PostNotFoundException::class)
     fun shouldThrowPostNotFound() {
-        val comment = Comment(22, 1, 1, 1)
+        val comment = Comment(22, 1, "",1, 1)
         service.createComment(comment)
     }
 

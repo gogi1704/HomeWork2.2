@@ -1,8 +1,7 @@
 package post.postContent
 
-class Note(
+data class Note(
     val id: Int,
-    val ownerId: Int,
     val title: String,
-    val description: String,
+    val text: String,
 )
