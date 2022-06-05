@@ -1,11 +1,10 @@
-import ChatService.getList
+import chatServiceAtributes.Chat
 import chatServiceAtributes.Massage
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class ChatServiceTest {
     private val chatService = ChatService
-    private val mapOfMassage = mutableMapOf<Int, Massage>()
 
     @Test
     fun getUnreadChatsCount() {
@@ -15,7 +14,10 @@ class ChatServiceTest {
 
     @Test
     fun getChats() {
-        val listOfChat = chatService.mapOfChats.getList()
+        val listOfChat = mutableListOf<Chat>()
+        for (it in chatService.mapOfChats){
+            listOfChat.add(it.value)
+        }
         val result = chatService.getChats()
         assertEquals(listOfChat , result)
     }
@@ -23,8 +25,8 @@ class ChatServiceTest {
     @Test
     fun getMassagesFromChat() {
         val result = chatService.getMassagesFromChat(1, 0, 1)
-        mapOfMassage[0] = Massage(0, "")
-        assertEquals(result, mapOfMassage)
+        val massageList = mutableListOf<Massage>( Massage(0, ""))
+        assertEquals(result, massageList)
     }
 
     @Test
