@@ -10,28 +10,23 @@ object ChatService {
 
     fun getUnreadChatsCount(): Int {
 
+
         return mapOfChats.isNotReadChatsCount()
     }
 
     fun getChats(): List<Chat> {
-        return mapOfChats.getList()
+        val filteredList = mapOfChats
+            .map { it.value }
+        return filteredList.toList()
     }
 
-    fun getMassagesFromChat(chatId: Int, lastMassageId: Int, countOfMassages: Int): Map<Int, Massage> {
+    fun getMassagesFromChat(chatId: Int, lastMassageId: Int, countOfMassages: Int): List<Massage> {
         val chat = mapOfChats[chatId]?.myMassages
         val newChat = chat?.filterValues { massage -> massage.massageId >= lastMassageId }
-
-        val filterChat = mutableMapOf<Int, Massage>()
-
-
-        for (it in newChat!!) {
-            filterChat[it.key] = it.value
-            if (filterChat.size == countOfMassages) {
-                break
-            }
-        }
-
-        return filterChat
+        val filterChat = newChat?.asSequence()
+            ?.map { it.value }
+            ?.take(countOfMassages)
+        return filterChat?.toList()!!
     }
 
     fun createMassage(massage: Massage, companionId: Int): Boolean {
@@ -83,15 +78,6 @@ object ChatService {
         return count
     }
 
-     fun MutableMap<Int, Chat>.getList(): List<Chat> {
-        val list = mutableListOf<Chat>()
-        for (it in this) {
-            list.add(it.value)
-        }
-        return list
-    }
 }
-
-
 
 
